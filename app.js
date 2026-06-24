@@ -216,6 +216,51 @@ function drawStationsOnMap(mapInstance) {
       .bindPopup(`<b>${plot.name} (Stasiun ${station.id})</b><br>Ukuran: ${plot.size}<br>Posisi sampling vegetasi.`);
     });
   });
+
+  // 4. Gambar Jalur Penghubung Antar Stasiun (sesuai sketsa & legenda)
+  const paths = [
+    {
+      name: "Jalur Setapak Pantai (Stasiun I - II)",
+      coords: [
+        [-8.8058, 116.4870], // S1
+        [-8.8062, 116.4880],
+        [-8.8066, 116.4892]  // S2
+      ],
+      options: {
+        color: '#ef4444', // Merah sesuai legenda batas wilayah/jalan
+        weight: 3,
+        dashArray: '4, 8',
+        opacity: 0.85
+      },
+      label: "950 m"
+    },
+    {
+      name: "Jalur Perlintasan Air (Stasiun II - III)",
+      coords: [
+        [-8.8066, 116.4892], // S2
+        [-8.8072, 116.4868],
+        [-8.8078, 116.4842]  // S3
+      ],
+      options: {
+        color: '#3b82f6', // Biru laut/perlintasan air
+        weight: 3,
+        dashArray: '6, 6',
+        opacity: 0.85
+      },
+      label: "20 m"
+    }
+  ];
+
+  paths.forEach(path => {
+    L.polyline(path.coords, path.options)
+      .addTo(mapInstance)
+      .bindPopup(`<b>${path.name}</b><br>Konektivitas stasiun: ${path.label}`)
+      .bindTooltip(path.label, {
+        permanent: true,
+        direction: 'center',
+        className: 'path-tooltip'
+      });
+  });
 }
 
 // Mengubah Basemap

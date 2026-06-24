@@ -1000,3 +1000,30 @@ body {
     display: none !important;
   }
 }
+
+/* Custom Path Tooltip */
+.path-tooltip {
+  background: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid var(--panel-border) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-display) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  border-radius: 6px !important;
+  padding: 3px 8px !important;
+  box-shadow: var(--shadow-md) !important;
+  text-shadow: none !important;
+}
+
+/* For printing, override tooltip styling to be sharp and high contrast */
+@media print {
+  .path-tooltip {
+    background: #fff !important;
+    border: 1px solid #000 !important;
+    color: #000 !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    box-shadow: none !important;
+  }
+}
