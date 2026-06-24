@@ -1,0 +1,1002 @@
+/* ==========================================================================
+   DESIGN SYSTEM & VARIABLES (AESTHETIC PREMIUM THEME)
+   ========================================================================== */
+:root {
+  --bg-color: #0b0f19;
+  --panel-bg: rgba(15, 23, 42, 0.75);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-color: #10b981; /* Mangrove emerald */
+  --accent-color-hover: #34d399;
+  --accent-color-light: rgba(16, 185, 129, 0.15);
+  --accent-blue: #3b82f6;
+  --accent-orange: #f97316;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-inset: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  
+  --font-main: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Outfit', -apple-system, sans-serif;
+}
+
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  height: 100vh;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   DASHBOARD DIGITAL LAYOUT (SCREEN MODE)
+   ========================================================================== */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  z-index: 1;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 420px;
+  background-color: var(--panel-bg);
+  backdrop-filter: blur(16px) saturate(120%);
+  border-right: 1px solid var(--panel-border);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-header {
+  padding: 24px;
+  border-bottom: 1px solid var(--panel-border);
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, rgba(0,0,0,0) 100%);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.uin-logo-svg {
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.3));
+}
+
+.logo-area h1 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+}
+
+.logo-area .tagline {
+  font-size: 0.75rem;
+  color: var(--accent-color);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Section Header Styles */
+.sidebar-scroll-content section h2 {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--panel-border);
+  padding-bottom: 8px;
+}
+
+.sidebar-scroll-content section h2 i {
+  color: var(--accent-color);
+  width: 18px;
+  height: 18px;
+}
+
+/* Quick Stats */
+.quick-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.stat-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.location-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Station list */
+.station-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.station-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  width: 100%;
+}
+
+.station-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateX(4px);
+}
+
+.station-btn.active {
+  background: var(--accent-color-light);
+  border-color: var(--accent-color);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+.station-btn-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.station-badge {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.station-badge.s1 { background-color: var(--accent-blue); }
+.station-badge.s2 { background-color: var(--accent-color); }
+.station-badge.s3 { background-color: var(--accent-orange); }
+
+.station-btn h3 {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.station-btn p {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+/* Sampling Method Box & Schema */
+.sampling-method-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.sampling-method-box h3 {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.sampling-method-box h3 i {
+  color: var(--accent-color);
+  width: 14px;
+  height: 14px;
+}
+
+.method-sub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.plot-schema-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* SVG Line representation in plot schema */
+.plot-schema-line {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+.plot-node {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.plot-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-color);
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+  transition: all 0.2s ease;
+}
+
+.plot-node:hover .plot-circle {
+  transform: scale(1.1);
+  background: var(--accent-color);
+  color: #fff;
+}
+
+.plot-node span {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+}
+
+.plot-spacing {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 2;
+  background: var(--bg-color);
+  padding: 1px 4px;
+  border-radius: 4px;
+  border: 1px solid var(--panel-border);
+}
+
+/* Charts and details */
+.chart-container {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 16px;
+  height: 220px;
+}
+
+.substrate-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.info-tag {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--panel-border);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.info-tag strong {
+  color: var(--text-primary);
+}
+
+/* Sidebar Footer & Buttons */
+.sidebar-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--panel-border);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-family: var(--font-main);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-color-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+}
+
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  border: 1px solid var(--panel-border);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Area Peta Utama */
+.map-area {
+  flex: 1;
+  height: 100%;
+  position: relative;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Custom Leaflet Controls over theme */
+.leaflet-container {
+  background: var(--bg-color) !important;
+  font-family: var(--font-main) !important;
+}
+
+/* Custom Basemap Layer Control */
+.custom-map-controls {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.layer-selector {
+  pointer-events: auto;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--panel-border);
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 160px;
+}
+
+.layer-selector h3 {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.basemap-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--panel-border);
+  color: var(--text-secondary);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-main);
+}
+
+.basemap-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+}
+
+.basemap-btn.active {
+  background: var(--accent-color-light);
+  border-color: var(--accent-color);
+  color: var(--accent-color-hover);
+  font-weight: 500;
+}
+
+.basemap-btn i {
+  width: 14px;
+  height: 14px;
+}
+
+/* Leaflet Custom Marker & Popups */
+.custom-station-popup .leaflet-popup-content-wrapper {
+  background: var(--bg-color);
+  color: var(--text-primary);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+}
+
+.custom-station-popup .leaflet-popup-tip {
+  background: var(--bg-color);
+  border-left: 1px solid var(--panel-border);
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.custom-station-popup h4 {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  color: var(--accent-color-hover);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.custom-station-popup p {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+/* Custom Marker Styling */
+.custom-leaflet-icon {
+  background: none;
+  border: none;
+}
+
+.station-pulse-marker {
+  width: 16px;
+  height: 16px;
+  background: var(--accent-color);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+  position: relative;
+}
+
+.station-pulse-marker.s1 { background: var(--accent-blue); box-shadow: 0 0 12px rgba(59, 130, 246, 0.8); }
+.station-pulse-marker.s2 { background: var(--accent-color); box-shadow: 0 0 12px rgba(16, 185, 129, 0.8); }
+.station-pulse-marker.s3 { background: var(--accent-orange); box-shadow: 0 0 12px rgba(249, 115, 22, 0.8); }
+
+.pulse-ring {
+  border: 2px solid var(--accent-color);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  position: absolute;
+  top: -11px;
+  left: -11px;
+  animation: pulse-animation 2s infinite ease-out;
+  opacity: 0;
+  pointer-events: none;
+}
+.station-pulse-marker.s1 .pulse-ring { border-color: var(--accent-blue); }
+.station-pulse-marker.s2 .pulse-ring { border-color: var(--accent-color); }
+.station-pulse-marker.s3 .pulse-ring { border-color: var(--accent-orange); }
+
+@keyframes pulse-animation {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ==========================================================================
+   FORMAL KARTOGRAFI PRINT LAYOUT (HIDDEN ON SCREEN BY DEFAULT)
+   ========================================================================== */
+.print-layout-container {
+  display: none; /* Hidden during standard digital viewing */
+}
+
+/* Interactive configuration sidebar for print on screens */
+.print-mode-active .dashboard-container {
+  display: none !important;
+}
+
+.print-mode-active .print-layout-container {
+  display: block;
+  background-color: #1e293b;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.print-wrapper {
+  background-color: #fff;
+  width: 297mm; /* Standard A4 Landscape width */
+  height: 210mm; /* Standard A4 Landscape height */
+  margin: 0 auto;
+  border: 3px solid #000;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  display: flex;
+  padding: 10px;
+  position: relative;
+  color: #000;
+  font-family: 'Poppins', var(--font-main);
+  box-sizing: border-box;
+}
+
+/* Print outer border line inside margins */
+.print-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  border: 1px solid #000;
+  pointer-events: none;
+}
+
+/* Map area inside print frame */
+.print-map-box {
+  width: 73%; /* Map takes up most of the layout */
+  height: 100%;
+  position: relative;
+  border: 2px solid #000;
+  box-sizing: border-box;
+}
+
+#print-map-inner {
+  width: 100%;
+  height: 100%;
+  background: #eef;
+}
+
+/* Border line over the map to show perfect grid boundary */
+.print-border-line {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 1px solid #000;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Print Sidebar Box (Layout info) */
+.print-sidebar-box {
+  width: 27%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #000;
+  border-left: none; /* Combined with map border */
+  box-sizing: border-box;
+  background: #fff;
+  z-index: 10;
+}
+
+.print-section {
+  border-bottom: 2px solid #000;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.print-section:last-child {
+  border-bottom: none;
+}
+
+/* Box 1: Header (Logo & Title) */
+.print-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 10px;
+}
+
+.print-logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.print-title-container {
+  flex: 1;
+}
+
+.print-title-container h2 {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+.print-title-container .print-subtitle {
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: #333;
+  margin-top: 2px;
+}
+
+/* Box 2: Compass & Scale */
+.print-scale-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 8px 10px;
+  height: 95px;
+}
+
+.compass-rose-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.compass-rose {
+  transform: rotate(0deg); /* Can adjust north orientation */
+}
+
+.compass-label {
+  font-size: 0.58rem;
+  font-weight: 600;
+}
+
+.scale-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.scale-text {
+  font-size: 0.62rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+.graphic-scale {
+  display: flex;
+  width: 100px;
+  height: 8px;
+  border: 1px solid #000;
+  position: relative;
+}
+
+.scale-segment {
+  flex: 1;
+  height: 100%;
+}
+
+.scale-segment.black { background-color: #000; }
+.scale-segment.white { background-color: #fff; }
+
+.scale-segment-labels {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: -15px; /* Allow units to overhang */
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.5rem;
+  font-weight: 600;
+}
+
+/* Box 3: Inset Map Lombok */
+.print-inset-section {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.print-section-title {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  padding-bottom: 2px;
+  letter-spacing: 0.5px;
+}
+
+#print-inset-map {
+  width: 100%;
+  height: 110px;
+  border: 1px solid #000;
+  background: #d4f1f9;
+}
+
+.inset-description {
+  font-size: 0.52rem;
+  margin-top: 4px;
+  font-style: italic;
+  color: #333;
+}
+
+/* Box 4: Legend */
+.print-legend-section {
+  padding: 8px 10px;
+  flex: 1; /* Legend occupies extra space */
+  display: flex;
+  flex-direction: column;
+}
+
+.legend-list {
+  list-style: none;
+  font-size: 0.58rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.legend-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-symbol {
+  width: 14px;
+  height: 8px;
+  display: inline-block;
+  border: 1px solid #000;
+}
+
+.legend-symbol.symbol-marker {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: red;
+  border: 1px solid #000;
+  display: inline-block;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.legend-symbol.symbol-boundary {
+  background-color: transparent;
+  border: 1.5px solid #000;
+}
+
+.legend-symbol.symbol-mangrove {
+  background-color: #2e7d32; /* Green */
+}
+
+.legend-symbol.symbol-land {
+  background-color: #d7ccc8; /* Brownish */
+}
+
+.legend-symbol.symbol-sea {
+  background-color: #29b6f6; /* Cyan-blue sea */
+}
+
+.legend-symbol.symbol-dock {
+  background-color: #b0bec5; /* Dock gray */
+}
+
+.legend-symbol.symbol-road {
+  background-color: transparent;
+  border: none;
+  border-top: 2px dashed #333;
+}
+
+/* Box 5: Sources */
+.print-source-section {
+  padding: 6px 10px;
+  font-size: 0.52rem;
+  line-height: 1.4;
+}
+
+.print-source-section p {
+  margin-bottom: 2px;
+}
+
+/* Box 6: Compiled By / Author */
+.print-author-section {
+  padding: 6px 10px;
+  border-bottom: none;
+}
+
+.author-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.author-inputs input {
+  padding: 3px 6px;
+  font-size: 0.58rem;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  font-family: var(--font-main);
+  background: #f8fafc;
+}
+
+/* Hidden static view of authors by default on screen */
+.author-static-print {
+  display: none;
+  font-size: 0.58rem;
+  line-height: 1.4;
+}
+
+.author-static-print p {
+  font-weight: 500;
+}
+
+.btn-close-print {
+  margin: 10px;
+  font-size: 0.65rem;
+  padding: 6px 10px;
+  width: auto;
+  align-self: center;
+}
+
+/* ==========================================================================
+   @MEDIA PRINT LAYOUT DEVIATIONS FOR REAL PRINTING
+   ========================================================================== */
+@media print {
+  /* Set landscape page format */
+  @page {
+    size: A4 landscape;
+    margin: 0; /* Let print-wrapper manage border and offsets */
+  }
+
+  body {
+    background-color: #fff !important;
+    color: #000 !important;
+    height: auto;
+  }
+
+  /* Hide screen dashboard app */
+  #dashboard-app {
+    display: none !important;
+  }
+
+  /* Hide background grey and configure print container to full viewport */
+  .print-mode-active .print-layout-container {
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100vw;
+    height: 100vh;
+    display: block !important;
+  }
+
+  .print-wrapper {
+    box-shadow: none !important;
+    border: 3px solid #000 !important;
+    margin: 0 !important;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Hide screen buttons during printing */
+  .btn-close-print {
+    display: none !important;
+  }
+
+  /* Hide interactive form inputs, show printed texts instead */
+  .author-inputs {
+    display: none !important;
+  }
+
+  .author-static-print {
+    display: block !important;
+  }
+
+  /* Make sure Leaflet controls like Zoom slider are hidden for clean cartography */
+  .leaflet-control-container {
+    display: none !important;
+  }
+}

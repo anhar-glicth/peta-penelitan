@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peta Lokasi Penelitian - Teluk Jor, Lombok Timur</title>
+  <meta name="description" content="Peta interaktif GIS untuk pemetaan stasiun sampling dan analisis parameter lingkungan di Teluk Jor, Jerowaru, Lombok Timur, NTB.">
+  
+  <!-- Google Fonts: Poppins & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- App Container (Digital Dashboard) -->
+  <div id="dashboard-app" class="dashboard-container">
+    
+    <!-- Sidebar Kiri: Dashboard Kontrol & Informasi -->
+    <aside id="sidebar-left" class="sidebar">
+      <header class="sidebar-header">
+        <div class="logo-area">
+          <svg class="uin-logo-svg" viewBox="0 0 100 100" width="40" height="40">
+            <polygon points="50,5 64,25 88,25 76,49 88,73 64,73 50,93 36,73 12,73 24,49 12,25 36,25" fill="none" stroke="var(--accent-color)" stroke-width="3"/>
+            <polygon points="50,18 60,35 77,35 68,50 77,65 60,65 50,82 40,65 23,65 32,50 23,35 40,35" fill="var(--accent-color-light)" opacity="0.3"/>
+            <text x="50" y="56" font-family="'Outfit', sans-serif" font-weight="700" font-size="16" fill="var(--accent-color)" text-anchor="middle">UIN</text>
+          </svg>
+          <div>
+            <h1>PETA PENELITIAN</h1>
+            <p class="tagline">Teluk Jor, Lombok Timur</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="sidebar-scroll-content">
+        <!-- Panel Ringkasan -->
+        <section class="info-section">
+          <h2><i data-lucide="info"></i> Ringkasan Lokasi</h2>
+          <div class="quick-stats">
+            <div class="stat-card">
+              <span class="stat-value">3</span>
+              <span class="stat-label">Stasiun</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value">9</span>
+              <span class="stat-label">Total Plot</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value">3x3 m</span>
+              <span class="stat-label">Ukuran Plot</span>
+            </div>
+          </div>
+          <p class="location-desc">
+            Penelitian ekologi kawasan mangrove dan perairan estuari yang terletak di Kecamatan Jerowaru, Lombok Timur, NTB. Menggunakan metode sampling transek kuadrat (3 stasiun, masing-masing 3 plot).
+          </p>
+        </section>
+
+        <!-- Daftar Stasiun -->
+        <section class="stations-section">
+          <h2><i data-lucide="map-pin"></i> Daftar Stasiun</h2>
+          <div class="station-list">
+            <button class="station-btn active" id="btn-stasiun-1" onclick="focusStation(1)">
+              <div class="station-btn-header">
+                <span class="station-badge s1">S1</span>
+                <h3>Stasiun I (Darat/Mangrove)</h3>
+              </div>
+              <p>Koordinat: 8°48'20.9"S, 116°29'13.2"E</p>
+            </button>
+            <button class="station-btn" id="btn-stasiun-2" onclick="focusStation(2)">
+              <div class="station-btn-header">
+                <span class="station-badge s2">S2</span>
+                <h3>Stasiun II (Transisi)</h3>
+              </div>
+              <p>Koordinat: 8°48'23.8"S, 116°29'21.1"E</p>
+            </button>
+            <button class="station-btn" id="btn-stasiun-3" onclick="focusStation(3)">
+              <div class="station-btn-header">
+                <span class="station-badge s3">S3</span>
+                <h3>Stasiun III (Laut/Perairan)</h3>
+              </div>
+              <p>Koordinat: 8°48'28.1"S, 116°29'03.1"E</p>
+            </button>
+          </div>
+        </section>
+
+        <!-- Visualisasi Data Stasiun Terpilih -->
+        <section class="details-section" id="active-details-panel">
+          <div class="details-header">
+            <h2><i data-lucide="bar-chart-3"></i> Data Parameter Stasiun <span id="detail-station-num">I</span></h2>
+          </div>
+          
+          <!-- Skema Metode Sampling Plot -->
+          <div class="sampling-method-box">
+            <h3><i data-lucide="grid"></i> Skema Metode Sampling (Plot)</h3>
+            <p class="method-sub">Ukuran plot 3x3 m, jarak antar plot 5 m</p>
+            <div class="plot-schema-container" id="plot-schema-view">
+              <!-- Terisi oleh JS sesuai sketsa stasiun -->
+            </div>
+          </div>
+
+          <!-- Grafik Parameter Lingkungan -->
+          <div class="chart-container">
+            <canvas id="environmentalChart"></canvas>
+          </div>
+          
+          <div class="substrate-info">
+            <span class="info-tag">Tipe Substrat: <strong id="detail-substrate">Lumpur Berpasir</strong></span>
+            <span class="info-tag">Vegetasi Dominan: <strong id="detail-vegetation">Rhizophora apiculata</strong></span>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer Kontrol -->
+      <footer class="sidebar-footer">
+        <button id="btn-print-mode" class="btn btn-primary btn-block" onclick="triggerPrint()">
+          <i data-lucide="printer"></i> Cetak Peta Resmi
+        </button>
+      </footer>
+    </aside>
+
+    <!-- Area Utama: Peta & Kontrol Basemap -->
+    <main class="map-area">
+      <div id="map"></div>
+      
+      <!-- Custom Map Controller -->
+      <div class="custom-map-controls">
+        <div class="layer-selector">
+          <h3>Pilih Basemap</h3>
+          <button class="basemap-btn active" onclick="changeBasemap('satellite')">
+            <i data-lucide="image"></i> Citra Satelit
+          </button>
+          <button class="basemap-btn" onclick="changeBasemap('osm')">
+            <i data-lucide="map"></i> OpenStreetMap
+          </button>
+          <button class="basemap-btn" onclick="changeBasemap('topo')">
+            <i data-lucide="mountain"></i> Topografi
+          </button>
+        </div>
+      </div>
+    </main>
+
+  </div> <!-- End App Container -->
+
+
+  <!-- ========================================== -->
+  <!-- LAYOUT KARTOGRAFI CETAK (HIDDEN DI LAYAR DIGITAL, AKTIF SAAT PRINT) -->
+  <!-- ========================================== -->
+  <div id="printable-map-layout" class="print-layout-container">
+    <div class="print-wrapper">
+      
+      <!-- Box Utama Peta (Kiri) -->
+      <div class="print-map-box">
+        <div id="print-map-inner"></div>
+        <div class="print-border-line"></div>
+      </div>
+      
+      <!-- Box Informasi Kartografi (Kanan) -->
+      <aside class="print-sidebar-box">
+        
+        <!-- Baris 1: Logo & Judul Peta -->
+        <div class="print-section print-header">
+          <div class="print-logo-container">
+            <svg class="uin-logo-print" viewBox="0 0 100 100" width="50" height="50">
+              <polygon points="50,5 64,25 88,25 76,49 88,73 64,73 50,93 36,73 12,73 24,49 12,25 36,25" fill="none" stroke="#000" stroke-width="4"/>
+              <text x="50" y="58" font-family="'Outfit', sans-serif" font-weight="700" font-size="18" fill="#000" text-anchor="middle">UIN</text>
+            </svg>
+          </div>
+          <div class="print-title-container">
+            <h2>PETA LOKASI PENELITIAN</h2>
+            <p class="print-subtitle">Teluk Jor, Kec. Jerowaru, Lombok Timur - NTB</p>
+          </div>
+        </div>
+        
+        <!-- Baris 2: Arah Mata Angin & Skala -->
+        <div class="print-section print-scale-section">
+          <div class="compass-rose-container">
+            <!-- SVG Arah Mata Angin (Windrose) -->
+            <svg class="compass-rose" viewBox="0 0 100 100" width="65" height="65">
+              <circle cx="50" cy="50" r="45" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="2,2"/>
+              <!-- Cardinal points -->
+              <polygon points="50,12 46,46 50,50" fill="#000"/>
+              <polygon points="50,12 54,46 50,50" fill="#ccc" stroke="#000" stroke-width="0.5"/>
+              <polygon points="50,88 54,54 50,50" fill="#000"/>
+              <polygon points="50,88 46,54 50,50" fill="#ccc" stroke="#000" stroke-width="0.5"/>
+              <polygon points="88,50 54,46 50,50" fill="#000"/>
+              <polygon points="88,50 54,54 50,50" fill="#ccc" stroke="#000" stroke-width="0.5"/>
+              <polygon points="12,50 46,54 50,50" fill="#000"/>
+              <polygon points="12,50 46,46 50,50" fill="#ccc" stroke="#000" stroke-width="0.5"/>
+              <!-- Texts -->
+              <text x="50" y="10" font-family="'Outfit', sans-serif" font-weight="700" font-size="10" fill="#000" text-anchor="middle">U</text>
+              <text x="50" y="98" font-family="'Outfit', sans-serif" font-weight="400" font-size="8" fill="#000" text-anchor="middle">S</text>
+              <text x="95" y="53" font-family="'Outfit', sans-serif" font-weight="400" font-size="8" fill="#000" text-anchor="middle">T</text>
+              <text x="5" y="53" font-family="'Outfit', sans-serif" font-weight="400" font-size="8" fill="#000" text-anchor="middle">B</text>
+            </svg>
+            <span class="compass-label">A. Mata Angin</span>
+          </div>
+          
+          <div class="scale-container">
+            <span class="scale-text">SKALA 1 : 2.500</span>
+            <div class="graphic-scale">
+              <div class="scale-segment black"></div>
+              <div class="scale-segment white"></div>
+              <div class="scale-segment black"></div>
+              <div class="scale-segment white"></div>
+              <div class="scale-segment-labels">
+                <span>0</span>
+                <span>25</span>
+                <span>50</span>
+                <span>75</span>
+                <span>100 m</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Baris 3: Peta Inset Pulau Lombok -->
+        <div class="print-section print-inset-section">
+          <div class="print-section-title">PETA INSET LOMBOK</div>
+          <div id="print-inset-map"></div>
+          <span class="inset-description">Terlihat Lokasi Teluk Jor</span>
+        </div>
+        
+        <!-- Baris 4: Legenda -->
+        <div class="print-section print-legend-section">
+          <div class="print-section-title">KETERANGAN / LEGENDA</div>
+          <ul class="legend-list">
+            <li><span class="legend-symbol symbol-marker"></span> Titik Stasiun / Sampling</li>
+            <li><span class="legend-symbol symbol-boundary"></span> Batas Stasiun (Plot)</li>
+            <li><span class="legend-symbol symbol-mangrove"></span> Zona Hutan Mangrove</li>
+            <li><span class="legend-symbol symbol-land"></span> Daratan / Pesisir</li>
+            <li><span class="legend-symbol symbol-sea"></span> Laut / Teluk</li>
+            <li><span class="legend-symbol symbol-dock"></span> Dermaga / Pier</li>
+            <li><span class="legend-symbol symbol-road"></span> Jalan / Setapak</li>
+          </ul>
+        </div>
+        
+        <!-- Baris 5: Sumber Data -->
+        <div class="print-section print-source-section">
+          <div class="print-section-title">SUMBER DATA</div>
+          <p>• Badan Informasi Geospasial (BIG)</p>
+          <p>• Peta RBI Skala 1:25.000</p>
+          <p>• Citra Satelit Google & Esri Earth</p>
+          <p>• Sistem Referensi: WGS 84 - EPSG:4326</p>
+        </div>
+        
+        <!-- Baris 6: Identitas Peneliti (Bisa diisi oleh user) -->
+        <div class="print-section print-author-section">
+          <div class="print-section-title">OLEH / PENELITI</div>
+          <!-- Input interaktif untuk mode edit digital, akan tercetak sebagai teks biasa saat diprint -->
+          <div class="author-inputs">
+            <input type="text" id="input-peneliti-1" value="Riki Salim Nugroho, S.T." placeholder="Nama Peneliti 1">
+            <input type="text" id="input-peneliti-2" value="Rika Safitri Nugraha, S.T." placeholder="Nama Peneliti 2 (Opsional)">
+            <input type="text" id="input-instansi" value="Program Studi Biologi, UIN Mataram" placeholder="Nama Instansi/Universitas">
+          </div>
+          <div class="author-static-print">
+            <p id="print-lbl-author-1"></p>
+            <p id="print-lbl-author-2"></p>
+            <p id="print-lbl-instansi"></p>
+          </div>
+        </div>
+
+        <button class="btn btn-secondary btn-sm btn-close-print" onclick="closePrintMode()">
+          <i data-lucide="arrow-left"></i> Kembali ke Dashboard
+        </button>
+        
+      </aside>
+      
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- Custom JS -->
+  <script src="app.js"></script>
+</body>
+</html>
