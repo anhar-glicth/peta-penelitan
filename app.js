@@ -6,8 +6,38 @@ const stationsData = {
     id: 1,
     name: "Stasiun I (Darat/Mangrove)",
     badgeClass: "s1",
-    center: [-8.8058, 116.4870],
+    center: [-8.8066, 116.4892],
     // Poligon batas wilayah stasiun (Batas Stasiun)
+    boundary: [
+      [-8.8061, 116.4887],
+      [-8.8061, 116.4897],
+      [-8.8071, 116.4897],
+      [-8.8071, 116.4887]
+    ],
+    plots: [
+      { name: "Plot 1", coords: [-8.8066, 116.4890], size: "3x3 m" },
+      { name: "Plot 2", coords: [-8.8066, 116.4892], size: "3x3 m" },
+      { name: "Plot 3", coords: [-8.8066, 116.4894], size: "3x3 m" }
+    ],
+    parameters: {
+      salinity: 24, // ppt (lebih payau)
+      ph: 6.5,
+      temperature: 28.8, // °C
+      species: {
+        "Rhizophora apiculata": 22,
+        "Sonneratia alba": 8,
+        "Avicennia marina": 1
+      },
+      substrate: "Lumpur Pekat (Clay)",
+      dominantVegetation: "Rhizophora apiculata & Sonneratia",
+      description: "Zona darat/mangrove lebat. Karakteristik lumpur yang sangat pekat dan subur mendukung kerapatan pohon mangrove yang sangat tinggi."
+    }
+  },
+  2: {
+    id: 2,
+    name: "Stasiun II (Transisi)",
+    badgeClass: "s2",
+    center: [-8.8058, 116.4870],
     boundary: [
       [-8.8053, 116.4865],
       [-8.8053, 116.4875],
@@ -22,7 +52,7 @@ const stationsData = {
     parameters: {
       salinity: 28, // ppt
       ph: 6.8,
-      temperature: 29.5, // °C
+      temperature: 29.5,
       species: {
         "Rhizophora apiculata": 15,
         "Sonneratia alba": 4,
@@ -30,37 +60,7 @@ const stationsData = {
       },
       substrate: "Lumpur Berpasir",
       dominantVegetation: "Rhizophora apiculata",
-      description: "Terletak di dekat garis pantai dan dermaga. Zona ini didominasi oleh mangrove berakar tunjang pekat dengan tingkat sedimentasi sedang."
-    }
-  },
-  2: {
-    id: 2,
-    name: "Stasiun II (Transisi)",
-    badgeClass: "s2",
-    center: [-8.8066, 116.4892],
-    boundary: [
-      [-8.8061, 116.4887],
-      [-8.8061, 116.4897],
-      [-8.8071, 116.4897],
-      [-8.8071, 116.4887]
-    ],
-    plots: [
-      { name: "Plot 1", coords: [-8.8066, 116.4890], size: "3x3 m" },
-      { name: "Plot 2", coords: [-8.8066, 116.4892], size: "3x3 m" },
-      { name: "Plot 3", coords: [-8.8066, 116.4894], size: "3x3 m" }
-    ],
-    parameters: {
-      salinity: 24, // ppt (lebih payau karena limpasan air tawar/sungai terdekat)
-      ph: 6.5,
-      temperature: 28.8,
-      species: {
-        "Rhizophora apiculata": 22,
-        "Sonneratia alba": 8,
-        "Avicennia marina": 1
-      },
-      substrate: "Lumpur Pekat (Clay)",
-      dominantVegetation: "Rhizophora apiculata & Sonneratia",
-      description: "Zona transisi tengah. Karakteristik lumpur yang sangat pekat dan subur mendukung kerapatan pohon mangrove yang sangat tinggi."
+      description: "Zona transisi di dekat garis pantai dan dermaga. Zona ini didominasi oleh mangrove berakar tunjang pekat dengan tingkat sedimentasi sedang."
     }
   },
   3: {
@@ -220,11 +220,11 @@ function drawStationsOnMap(mapInstance) {
   // 4. Gambar Jalur Penghubung Antar Stasiun (sesuai sketsa & legenda)
   const paths = [
     {
-      name: "Jalur Setapak Pantai (Stasiun I - II)",
+      name: "Jalur Setapak Pantai (Stasiun II - I)",
       coords: [
-        [-8.8058, 116.4870], // S1
+        [-8.8058, 116.4870], // S2 (Stasiun II - Tengah)
         [-8.8062, 116.4880],
-        [-8.8066, 116.4892]  // S2
+        [-8.8066, 116.4892]  // S1 (Stasiun I - Kanan)
       ],
       options: {
         color: '#ef4444', // Merah sesuai legenda batas wilayah/jalan
@@ -235,11 +235,11 @@ function drawStationsOnMap(mapInstance) {
       label: "950 m"
     },
     {
-      name: "Jalur Perlintasan Air (Stasiun II - III)",
+      name: "Jalur Perlintasan Air (Stasiun III - II)",
       coords: [
-        [-8.8066, 116.4892], // S2
-        [-8.8072, 116.4868],
-        [-8.8078, 116.4842]  // S3
+        [-8.8078, 116.4842], // S3 (Stasiun III - Kiri)
+        [-8.8068, 116.4858],
+        [-8.8058, 116.4870]  // S2 (Stasiun II - Tengah)
       ],
       options: {
         color: '#3b82f6', // Biru laut/perlintasan air
