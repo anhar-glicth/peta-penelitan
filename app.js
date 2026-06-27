@@ -6,18 +6,18 @@ const stationsData = {
     id: 1,
     name: "Stasiun I (Darat/Mangrove)",
     badgeClass: "s1",
-    center: [-8.8066, 116.4892],
+    center: [-8.8086562, 116.4930839],
     // Poligon batas wilayah stasiun (Batas Stasiun)
     boundary: [
-      [-8.8061, 116.4887],
-      [-8.8061, 116.4897],
-      [-8.8071, 116.4897],
-      [-8.8071, 116.4887]
+      [-8.8081562, 116.4925839],
+      [-8.8081562, 116.4935839],
+      [-8.8091562, 116.4935839],
+      [-8.8091562, 116.4925839]
     ],
     plots: [
-      { name: "Plot 1", coords: [-8.8066, 116.4890], size: "3x3 m" },
-      { name: "Plot 2", coords: [-8.8066, 116.4892], size: "3x3 m" },
-      { name: "Plot 3", coords: [-8.8066, 116.4894], size: "3x3 m" }
+      { name: "Plot 1", coords: [-8.8086562, 116.4928839], size: "3x3 m" },
+      { name: "Plot 2", coords: [-8.8086562, 116.4930839], size: "3x3 m" },
+      { name: "Plot 3", coords: [-8.8086562, 116.4932839], size: "3x3 m" }
     ],
     parameters: {
       salinity: 24, // ppt (lebih payau)
@@ -37,17 +37,17 @@ const stationsData = {
     id: 2,
     name: "Stasiun II (Transisi)",
     badgeClass: "s2",
-    center: [-8.8058, 116.4870],
+    center: [-8.8057199, 116.487292],
     boundary: [
-      [-8.8053, 116.4865],
-      [-8.8053, 116.4875],
-      [-8.8063, 116.4875],
-      [-8.8063, 116.4865]
+      [-8.8052199, 116.486792],
+      [-8.8052199, 116.487792],
+      [-8.8062199, 116.487792],
+      [-8.8062199, 116.486792]
     ],
     plots: [
-      { name: "Plot 1", coords: [-8.8058, 116.4868], size: "3x3 m" },
-      { name: "Plot 2", coords: [-8.8058, 116.4870], size: "3x3 m" },
-      { name: "Plot 3", coords: [-8.8058, 116.4872], size: "3x3 m" }
+      { name: "Plot 1", coords: [-8.8057199, 116.487092], size: "3x3 m" },
+      { name: "Plot 2", coords: [-8.8057199, 116.487292], size: "3x3 m" },
+      { name: "Plot 3", coords: [-8.8057199, 116.487492], size: "3x3 m" }
     ],
     parameters: {
       salinity: 28, // ppt
@@ -67,17 +67,17 @@ const stationsData = {
     id: 3,
     name: "Stasiun III (Laut/Perairan)",
     badgeClass: "s3",
-    center: [-8.8078, 116.4842],
+    center: [-8.8054793, 116.4862664],
     boundary: [
-      [-8.8073, 116.4837],
-      [-8.8073, 116.4847],
-      [-8.8083, 116.4847],
-      [-8.8083, 116.4837]
+      [-8.8049793, 116.4857664],
+      [-8.8049793, 116.4867664],
+      [-8.8059793, 116.4867664],
+      [-8.8059793, 116.4857664]
     ],
     plots: [
-      { name: "Plot 1", coords: [-8.8078, 116.4840], size: "3x3 m" },
-      { name: "Plot 2", coords: [-8.8078, 116.4842], size: "3x3 m" },
-      { name: "Plot 3", coords: [-8.8078, 116.4844], size: "3x3 m" }
+      { name: "Plot 1", coords: [-8.8054793, 116.4860664], size: "3x3 m" },
+      { name: "Plot 2", coords: [-8.8054793, 116.4862664], size: "3x3 m" },
+      { name: "Plot 3", coords: [-8.8054793, 116.4864664], size: "3x3 m" }
     ],
     parameters: {
       salinity: 32, // ppt (salinitas laut normal)
@@ -140,9 +140,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // LOGIKA PETA UTAMA
 // ==========================================================================
 function initMainMap() {
-  // Center: Teluk Jor, Lombok Timur (-8.807, 116.486)
+  // Center: Teluk Jor, Lombok Timur (Updated)
   mainMap = L.map('map', {
-    center: [-8.807, 116.486],
+    center: [-8.8066, 116.4889],
     zoom: 15,
     layers: [tileLayers.satellite], // Default layer
     zoomControl: false // Custom placement later
@@ -222,9 +222,9 @@ function drawStationsOnMap(mapInstance) {
     {
       name: "Jalur Setapak Pantai (Stasiun II - I)",
       coords: [
-        [-8.8058, 116.4870], // S2 (Stasiun II - Tengah)
-        [-8.8062, 116.4880],
-        [-8.8066, 116.4892]  // S1 (Stasiun I - Kanan)
+        [-8.8057199, 116.487292], // S2 (Stasiun II - Tengah)
+        [-8.8072, 116.4902],
+        [-8.8086562, 116.4930839]  // S1 (Stasiun I - Kanan)
       ],
       options: {
         color: '#ef4444', // Merah sesuai legenda batas wilayah/jalan
@@ -232,14 +232,14 @@ function drawStationsOnMap(mapInstance) {
         dashArray: '4, 8',
         opacity: 0.85
       },
-      label: "950 m"
+      label: "715 m"
     },
     {
       name: "Jalur Perlintasan Air (Stasiun III - II)",
       coords: [
-        [-8.8078, 116.4842], // S3 (Stasiun III - Kiri)
-        [-8.8068, 116.4858],
-        [-8.8058, 116.4870]  // S2 (Stasiun II - Tengah)
+        [-8.8054793, 116.4862664], // S3 (Stasiun III - Kiri)
+        [-8.8056, 116.4868],
+        [-8.8057199, 116.487292]  // S2 (Stasiun II - Tengah)
       ],
       options: {
         color: '#3b82f6', // Biru laut/perlintasan air
@@ -247,7 +247,7 @@ function drawStationsOnMap(mapInstance) {
         dashArray: '6, 6',
         opacity: 0.85
       },
-      label: "20 m"
+      label: "116 m"
     }
   ];
 
@@ -510,7 +510,7 @@ function triggerPrint() {
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(insetMap);
 
       // Gambar Marker merah/lingkaran penanda lokasi Teluk Jor di Lombok
-      L.circleMarker([-8.808, 116.486], {
+      L.circleMarker([-8.8066, 116.4889], {
         radius: 8,
         fillColor: "red",
         color: "black",

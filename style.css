@@ -92,8 +92,13 @@ body {
   gap: 16px;
 }
 
-.uin-logo-svg {
-  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.3));
+.uin-logo-img {
+  filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.3));
+  object-fit: contain;
+}
+
+.uin-logo-print {
+  object-fit: contain;
 }
 
 .logo-area h1 {
