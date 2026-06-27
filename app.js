@@ -493,10 +493,10 @@ function triggerPrint() {
 
     // 3. Inisialisasi Peta Inset Pulau Lombok (Jika belum dibuat)
     if (!insetMap) {
-      // Koordinat tengah Pulau Lombok
+      // Koordinat tengah Pulau Lombok (Disesuaikan untuk zoom lebih dekat)
       insetMap = L.map('print-inset-map', {
-        center: [-8.63, 116.32],
-        zoom: 8.2,
+        center: [-8.72, 116.39],
+        zoom: 9.0,
         zoomControl: false,
         attributionControl: false,
         dragging: false,
@@ -505,17 +505,17 @@ function triggerPrint() {
         boxZoom: false
       });
 
-      // Tile layer basemap sederhana untuk inset
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(insetMap);
+      // Gunakan basemap CartoDB Positron yang bersih, minimalis, dan kontras tinggi
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(insetMap);
 
-      // Gambar Marker merah/lingkaran penanda lokasi Teluk Jor di Lombok
+      // Gambar Marker merah dengan tepian putih agar kontras dan sangat jelas posisinya
       L.circleMarker([-8.8066, 116.4889], {
-        radius: 8,
-        fillColor: "red",
-        color: "black",
+        radius: 7,
+        fillColor: "#ef4444",
+        color: "#ffffff",
         weight: 2,
         opacity: 1,
-        fillOpacity: 0.9
+        fillOpacity: 1
       }).addTo(insetMap);
     }
 
@@ -525,7 +525,7 @@ function triggerPrint() {
       printMap.setView(currentCenter, currentZoom);
 
       insetMap.invalidateSize();
-      insetMap.setView([-8.63, 116.32], 8.2);
+      insetMap.setView([-8.72, 116.39], 9.0);
     }, 150);
 
     // Berikan jeda kecil agar map rendering tiles selesai sebelum pop up print browser
