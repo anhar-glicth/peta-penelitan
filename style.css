@@ -945,6 +945,11 @@ body {
    @MEDIA PRINT LAYOUT DEVIATIONS FOR REAL PRINTING
    ========================================================================== */
 @media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
   /* Set landscape page format */
   @page {
     size: A4 landscape;

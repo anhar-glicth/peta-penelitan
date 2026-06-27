@@ -489,15 +489,14 @@ function triggerPrint() {
     } else {
       // Jika sudah ada, sinkronkan posisinya saja
       printMap.setView(currentCenter, currentZoom);
-      printMap.invalidateSize();
     }
 
     // 3. Inisialisasi Peta Inset Pulau Lombok (Jika belum dibuat)
     if (!insetMap) {
       // Koordinat tengah Pulau Lombok
       insetMap = L.map('print-inset-map', {
-        center: [-8.65, 116.32],
-        zoom: 8.5,
+        center: [-8.63, 116.32],
+        zoom: 8.2,
         zoomControl: false,
         attributionControl: false,
         dragging: false,
@@ -518,14 +517,21 @@ function triggerPrint() {
         opacity: 1,
         fillOpacity: 0.9
       }).addTo(insetMap);
-    } else {
-      insetMap.invalidateSize();
     }
+
+    // Panggil invalidateSize() dan reset view pada setTimeout berikutnya agar Leaflet sempat mendeteksi ukuran baru container
+    setTimeout(() => {
+      printMap.invalidateSize();
+      printMap.setView(currentCenter, currentZoom);
+
+      insetMap.invalidateSize();
+      insetMap.setView([-8.63, 116.32], 8.2);
+    }, 150);
 
     // Berikan jeda kecil agar map rendering tiles selesai sebelum pop up print browser
     setTimeout(() => {
       window.print();
-    }, 700);
+    }, 850);
 
   }, 100);
 }
