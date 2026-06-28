@@ -495,8 +495,9 @@ function triggerPrint() {
     if (!insetMap) {
       // Koordinat tengah Pulau Lombok (Disesuaikan untuk zoom lebih dekat)
       insetMap = L.map('print-inset-map', {
-        center: [-8.72, 116.39],
-        zoom: 9.0,
+        center: [-8.56, 116.35],
+        zoom: 8.2,
+        zoomSnap: 0.1,
         zoomControl: false,
         attributionControl: false,
         dragging: false,
@@ -525,7 +526,7 @@ function triggerPrint() {
       printMap.setView(currentCenter, currentZoom);
 
       insetMap.invalidateSize();
-      insetMap.setView([-8.72, 116.39], 9.0);
+      insetMap.setView([-8.56, 116.35], 8.2);
     }, 150);
 
     // Berikan jeda kecil agar map rendering tiles selesai sebelum pop up print browser

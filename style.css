@@ -570,9 +570,9 @@ body {
   position: relative;
 }
 
-.station-pulse-marker.s1 { background: var(--accent-blue); box-shadow: 0 0 12px rgba(59, 130, 246, 0.8); }
-.station-pulse-marker.s2 { background: var(--accent-color); box-shadow: 0 0 12px rgba(16, 185, 129, 0.8); }
-.station-pulse-marker.s3 { background: var(--accent-orange); box-shadow: 0 0 12px rgba(249, 115, 22, 0.8); }
+.station-pulse-marker.s1 { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.8); }
+.station-pulse-marker.s2 { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.8); }
+.station-pulse-marker.s3 { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.8); }
 
 .pulse-ring {
   border: 2px solid var(--accent-color);
@@ -586,9 +586,9 @@ body {
   opacity: 0;
   pointer-events: none;
 }
-.station-pulse-marker.s1 .pulse-ring { border-color: var(--accent-blue); }
-.station-pulse-marker.s2 .pulse-ring { border-color: var(--accent-color); }
-.station-pulse-marker.s3 .pulse-ring { border-color: var(--accent-orange); }
+.station-pulse-marker.s1 .pulse-ring { border-color: #ef4444; }
+.station-pulse-marker.s2 .pulse-ring { border-color: #ef4444; }
+.station-pulse-marker.s3 .pulse-ring { border-color: #ef4444; }
 
 @keyframes pulse-animation {
   0% { transform: scale(0.5); opacity: 0.8; }
@@ -810,7 +810,7 @@ body {
 
 #print-inset-map {
   width: 100%;
-  height: 110px;
+  height: 130px;
   border: 1px solid #000;
   background: #d4f1f9;
 }
@@ -856,7 +856,7 @@ body {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: red;
+  background-color: #ef4444;
   border: 1px solid #000;
   display: inline-block;
   margin-left: 3px;
