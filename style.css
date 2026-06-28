@@ -8,17 +8,18 @@
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --accent-color: #10b981; /* Mangrove emerald */
+  --accent-color: #10b981;
+  /* Mangrove emerald */
   --accent-color-hover: #34d399;
   --accent-color-light: rgba(16, 185, 129, 0.15);
   --accent-blue: #3b82f6;
   --accent-orange: #f97316;
-  
+
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-inset: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-  
+
   --font-main: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: 'Outfit', -apple-system, sans-serif;
 }
@@ -44,13 +45,16 @@ body {
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.1);
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.3);
 }
@@ -83,7 +87,7 @@ body {
 .sidebar-header {
   padding: 24px;
   border-bottom: 1px solid var(--panel-border);
-  background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 .logo-area {
@@ -238,9 +242,17 @@ body {
   border-radius: 4px;
 }
 
-.station-badge.s1 { background-color: var(--accent-blue); }
-.station-badge.s2 { background-color: var(--accent-color); }
-.station-badge.s3 { background-color: var(--accent-orange); }
+.station-badge.s1 {
+  background-color: var(--accent-blue);
+}
+
+.station-badge.s2 {
+  background-color: var(--accent-color);
+}
+
+.station-badge.s3 {
+  background-color: var(--accent-orange);
+}
 
 .station-btn h3 {
   font-size: 0.88rem;
@@ -286,7 +298,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.975);
   border-radius: 8px;
   padding: 16px;
   position: relative;
@@ -300,7 +312,7 @@ body {
   left: 20px;
   right: 20px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(255, 255, 255);
   z-index: 1;
 }
 
@@ -326,7 +338,7 @@ body {
   font-weight: 700;
   font-family: var(--font-display);
   color: var(--accent-color);
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 10px rgb(255, 255, 255);
   transition: all 0.2s ease;
 }
 
@@ -570,9 +582,20 @@ body {
   position: relative;
 }
 
-.station-pulse-marker.s1 { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.8); }
-.station-pulse-marker.s2 { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.8); }
-.station-pulse-marker.s3 { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.8); }
+.station-pulse-marker.s1 {
+  background: #ef4444;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
+}
+
+.station-pulse-marker.s2 {
+  background: #ef4444;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
+}
+
+.station-pulse-marker.s3 {
+  background: #ef4444;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
+}
 
 .pulse-ring {
   border: 2px solid var(--accent-color);
@@ -586,20 +609,37 @@ body {
   opacity: 0;
   pointer-events: none;
 }
-.station-pulse-marker.s1 .pulse-ring { border-color: #ef4444; }
-.station-pulse-marker.s2 .pulse-ring { border-color: #ef4444; }
-.station-pulse-marker.s3 .pulse-ring { border-color: #ef4444; }
+
+.station-pulse-marker.s1 .pulse-ring {
+  border-color: #ef4444;
+}
+
+.station-pulse-marker.s2 .pulse-ring {
+  border-color: #ef4444;
+}
+
+.station-pulse-marker.s3 .pulse-ring {
+  border-color: #ef4444;
+}
 
 @keyframes pulse-animation {
-  0% { transform: scale(0.5); opacity: 0.8; }
-  100% { transform: scale(1.5); opacity: 0; }
+  0% {
+    transform: scale(0.5);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
 }
 
 /* ==========================================================================
    FORMAL KARTOGRAFI PRINT LAYOUT (HIDDEN ON SCREEN BY DEFAULT)
    ========================================================================== */
 .print-layout-container {
-  display: none; /* Hidden during standard digital viewing */
+  display: none;
+  /* Hidden during standard digital viewing */
 }
 
 /* Interactive configuration sidebar for print on screens */
@@ -618,8 +658,10 @@ body {
 
 .print-wrapper {
   background-color: #fff;
-  width: 297mm; /* Standard A4 Landscape width */
-  height: 210mm; /* Standard A4 Landscape height */
+  width: 297mm;
+  /* Standard A4 Landscape width */
+  height: 210mm;
+  /* Standard A4 Landscape height */
   margin: 0 auto;
   border: 3px solid #000;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
@@ -645,7 +687,8 @@ body {
 
 /* Map area inside print frame */
 .print-map-box {
-  width: 73%; /* Map takes up most of the layout */
+  width: 73%;
+  /* Map takes up most of the layout */
   height: 100%;
   position: relative;
   border: 2px solid #000;
@@ -661,7 +704,10 @@ body {
 /* Border line over the map to show perfect grid boundary */
 .print-border-line {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border: 1px solid #000;
   pointer-events: none;
   z-index: 1000;
@@ -674,7 +720,8 @@ body {
   display: flex;
   flex-direction: column;
   border: 2px solid #000;
-  border-left: none; /* Combined with map border */
+  border-left: none;
+  /* Combined with map border */
   box-sizing: border-box;
   background: #fff;
   z-index: 10;
@@ -740,7 +787,8 @@ body {
 }
 
 .compass-rose {
-  transform: rotate(0deg); /* Can adjust north orientation */
+  transform: rotate(0deg);
+  /* Can adjust north orientation */
 }
 
 .compass-label {
@@ -774,14 +822,20 @@ body {
   height: 100%;
 }
 
-.scale-segment.black { background-color: #000; }
-.scale-segment.white { background-color: #fff; }
+.scale-segment.black {
+  background-color: #000;
+}
+
+.scale-segment.white {
+  background-color: #fff;
+}
 
 .scale-segment-labels {
   position: absolute;
   top: 10px;
   left: 0;
-  right: -15px; /* Allow units to overhang */
+  right: -15px;
+  /* Allow units to overhang */
   display: flex;
   justify-content: space-between;
   font-size: 0.5rem;
@@ -825,7 +879,8 @@ body {
 /* Box 4: Legend */
 .print-legend-section {
   padding: 8px 10px;
-  flex: 1; /* Legend occupies extra space */
+  flex: 1;
+  /* Legend occupies extra space */
   display: flex;
   flex-direction: column;
 }
@@ -869,25 +924,29 @@ body {
 }
 
 .legend-symbol.symbol-mangrove {
-  background-color: #2e7d32; /* Green */
+  background-color: #2e7d32;
+  /* Green */
 }
 
 .legend-symbol.symbol-land {
-  background-color: #d7ccc8; /* Brownish */
+  background-color: #d7ccc8;
+  /* Brownish */
 }
 
 .legend-symbol.symbol-sea {
-  background-color: #29b6f6; /* Cyan-blue sea */
+  background-color: #29b6f6;
+  /* Cyan-blue sea */
 }
 
 .legend-symbol.symbol-dock {
-  background-color: #b0bec5; /* Dock gray */
+  background-color: #b0bec5;
+  /* Dock gray */
 }
 
 .legend-symbol.symbol-road {
   background-color: transparent;
   border: none;
-  border-top: 2px dashed #333;
+  border-top: 2px dashed #ee0505;
 }
 
 /* Box 5: Sources */
@@ -953,7 +1012,8 @@ body {
   /* Set landscape page format */
   @page {
     size: A4 landscape;
-    margin: 0; /* Let print-wrapper manage border and offsets */
+    margin: 0;
+    /* Let print-wrapper manage border and offsets */
   }
 
   body {

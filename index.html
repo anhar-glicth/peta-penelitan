@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peta Lokasi Penelitian - Teluk Jor, Lombok Timur</title>
-  <meta name="description" content="Peta interaktif GIS untuk pemetaan stasiun sampling dan analisis parameter lingkungan di Teluk Jor, Jerowaru, Lombok Timur, NTB.">
-  
+  <meta name="description"
+    content="Peta interaktif GIS untuk pemetaan stasiun sampling dan analisis parameter lingkungan di Teluk Jor, Jerowaru, Lombok Timur, NTB.">
+
   <!-- Google Fonts: Poppins & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
   <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  
+
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- App Container (Digital Dashboard) -->
   <div id="dashboard-app" class="dashboard-container">
-    
+
     <!-- Sidebar Kiri: Dashboard Kontrol & Informasi -->
     <aside id="sidebar-left" class="sidebar">
       <header class="sidebar-header">
@@ -59,7 +65,8 @@
             </div>
           </div>
           <p class="location-desc">
-            Penelitian ekologi kawasan mangrove dan perairan estuari yang terletak di Kecamatan Jerowaru, Lombok Timur, NTB. Menggunakan metode sampling transek kuadrat (3 stasiun, masing-masing 3 plot).
+            Penelitian ekologi kawasan mangrove dan perairan estuari yang terletak di Kecamatan Jerowaru, Lombok Timur,
+            NTB. Menggunakan metode sampling transek kuadrat (3 stasiun, masing-masing 3 plot).
           </p>
         </section>
 
@@ -96,7 +103,7 @@
           <div class="details-header">
             <h2><i data-lucide="bar-chart-3"></i> Data Parameter Stasiun <span id="detail-station-num">I</span></h2>
           </div>
-          
+
           <!-- Skema Metode Sampling Plot -->
           <div class="sampling-method-box">
             <h3><i data-lucide="grid"></i> Skema Metode Sampling (Plot)</h3>
@@ -110,7 +117,7 @@
           <div class="chart-container">
             <canvas id="environmentalChart"></canvas>
           </div>
-          
+
           <div class="substrate-info">
             <span class="info-tag">Tipe Substrat: <strong id="detail-substrate">Lumpur Berpasir</strong></span>
             <span class="info-tag">Vegetasi Dominan: <strong id="detail-vegetation">Rhizophora apiculata</strong></span>
@@ -129,7 +136,7 @@
     <!-- Area Utama: Peta & Kontrol Basemap -->
     <main class="map-area">
       <div id="map"></div>
-      
+
       <!-- Custom Map Controller -->
       <div class="custom-map-controls">
         <div class="layer-selector">
@@ -155,16 +162,16 @@
   <!-- ========================================== -->
   <div id="printable-map-layout" class="print-layout-container">
     <div class="print-wrapper">
-      
+
       <!-- Box Utama Peta (Kiri) -->
       <div class="print-map-box">
         <div id="print-map-inner"></div>
         <div class="print-border-line"></div>
       </div>
-      
+
       <!-- Box Informasi Kartografi (Kanan) -->
       <aside class="print-sidebar-box">
-        
+
         <!-- Baris 1: Logo & Judul Peta -->
         <div class="print-section print-header">
           <div class="print-logo-container">
@@ -175,31 +182,35 @@
             <p class="print-subtitle">Teluk Jor, Kec. Jerowaru, Lombok Timur - NTB</p>
           </div>
         </div>
-        
+
         <!-- Baris 2: Arah Mata Angin & Skala -->
         <div class="print-section print-scale-section">
           <div class="compass-rose-container">
             <!-- SVG Arah Mata Angin (Windrose) -->
             <svg class="compass-rose" viewBox="0 0 100 100" width="65" height="65">
-              <circle cx="50" cy="50" r="45" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="2,2"/>
+              <circle cx="50" cy="50" r="45" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="2,2" />
               <!-- Cardinal points -->
-              <polygon points="50,12 46,46 50,50" fill="#000"/>
-              <polygon points="50,12 54,46 50,50" fill="#ccc" stroke="#000" stroke-width="0.5"/>
-              <polygon points="50,88 54,54 50,50" fill="#000"/>
-              <polygon points="50,88 46,54 50,50" fill="#ccc" stroke="#000" stroke-width="0.5"/>
-              <polygon points="88,50 54,46 50,50" fill="#000"/>
-              <polygon points="88,50 54,54 50,50" fill="#ccc" stroke="#000" stroke-width="0.5"/>
-              <polygon points="12,50 46,54 50,50" fill="#000"/>
-              <polygon points="12,50 46,46 50,50" fill="#ccc" stroke="#000" stroke-width="0.5"/>
+              <polygon points="50,12 46,46 50,50" fill="#000" />
+              <polygon points="50,12 54,46 50,50" fill="#ccc" stroke="#000" stroke-width="0.5" />
+              <polygon points="50,88 54,54 50,50" fill="#000" />
+              <polygon points="50,88 46,54 50,50" fill="#ccc" stroke="#000" stroke-width="0.5" />
+              <polygon points="88,50 54,46 50,50" fill="#000" />
+              <polygon points="88,50 54,54 50,50" fill="#ccc" stroke="#000" stroke-width="0.5" />
+              <polygon points="12,50 46,54 50,50" fill="#000" />
+              <polygon points="12,50 46,46 50,50" fill="#ccc" stroke="#000" stroke-width="0.5" />
               <!-- Texts -->
-              <text x="50" y="10" font-family="'Outfit', sans-serif" font-weight="700" font-size="10" fill="#000" text-anchor="middle">U</text>
-              <text x="50" y="98" font-family="'Outfit', sans-serif" font-weight="400" font-size="8" fill="#000" text-anchor="middle">S</text>
-              <text x="95" y="53" font-family="'Outfit', sans-serif" font-weight="400" font-size="8" fill="#000" text-anchor="middle">T</text>
-              <text x="5" y="53" font-family="'Outfit', sans-serif" font-weight="400" font-size="8" fill="#000" text-anchor="middle">B</text>
+              <text x="50" y="10" font-family="'Outfit', sans-serif" font-weight="700" font-size="10" fill="#000"
+                text-anchor="middle">U</text>
+              <text x="50" y="98" font-family="'Outfit', sans-serif" font-weight="400" font-size="8" fill="#000"
+                text-anchor="middle">S</text>
+              <text x="95" y="53" font-family="'Outfit', sans-serif" font-weight="400" font-size="8" fill="#000"
+                text-anchor="middle">T</text>
+              <text x="5" y="53" font-family="'Outfit', sans-serif" font-weight="400" font-size="8" fill="#000"
+                text-anchor="middle">B</text>
             </svg>
             <span class="compass-label">Arah Mata Angin</span>
           </div>
-          
+
           <div class="scale-container">
             <span class="scale-text">SKALA 1 : 2.500</span>
             <div class="graphic-scale">
@@ -217,14 +228,14 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Baris 3: Peta Inset Pulau Lombok -->
         <div class="print-section print-inset-section">
           <div class="print-section-title">PETA INSET LOMBOK</div>
           <div id="print-inset-map"></div>
-          <span class="inset-description">Terlihat Lokasi Teluk Jor</span>
+          <span class="inset-description"></span>
         </div>
-        
+
         <!-- Baris 4: Legenda -->
         <div class="print-section print-legend-section">
           <div class="print-section-title">KETERANGAN / LEGENDA</div>
@@ -238,7 +249,7 @@
             <li><span class="legend-symbol symbol-road"></span> Jalan / Setapak</li>
           </ul>
         </div>
-        
+
         <!-- Baris 5: Sumber Data -->
         <div class="print-section print-source-section">
           <div class="print-section-title">SUMBER DATA</div>
@@ -247,15 +258,17 @@
           <p>• Citra Satelit Google & Esri Earth</p>
           <p>• Sistem Referensi: WGS 84 - EPSG:4326</p>
         </div>
-        
+
         <!-- Baris 6: Identitas Peneliti (Bisa diisi oleh user) -->
         <div class="print-section print-author-section">
           <div class="print-section-title">OLEH / PENELITI</div>
           <!-- Input interaktif untuk mode edit digital, akan tercetak sebagai teks biasa saat diprint -->
           <div class="author-inputs">
             <input type="text" id="input-peneliti-1" value="Riki Salim Nugroho, S.T." placeholder="Nama Peneliti 1">
-            <input type="text" id="input-peneliti-2" value="Rika Safitri Nugraha, S.T." placeholder="Nama Peneliti 2 (Opsional)">
-            <input type="text" id="input-instansi" value="Program Studi Biologi, UIN Mataram" placeholder="Nama Instansi/Universitas">
+            <input type="text" id="input-peneliti-2" value="Rika Safitri Nugraha, S.T."
+              placeholder="Nama Peneliti 2 (Opsional)">
+            <input type="text" id="input-instansi" value="Program Studi Biologi, UIN Mataram"
+              placeholder="Nama Instansi/Universitas">
           </div>
           <div class="author-static-print">
             <p id="print-lbl-author-1"></p>
@@ -267,16 +280,18 @@
         <button class="btn btn-secondary btn-sm btn-close-print" onclick="closePrintMode()">
           <i data-lucide="arrow-left"></i> Kembali ke Dashboard
         </button>
-        
+
       </aside>
-      
+
     </div>
   </div>
 
   <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
   <!-- Custom JS -->
   <script src="app.js"></script>
 </body>
+
 </html>
