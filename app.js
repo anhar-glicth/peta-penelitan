@@ -160,12 +160,12 @@ function initMainMap() {
 // Fungsi menggambar batasan stasiun & marker plot di peta
 function drawStationsOnMap(mapInstance) {
   Object.values(stationsData).forEach(station => {
-    // 1. Gambar Batas Wilayah Stasiun (Poligon Merah sesuai sketsa/legenda)
+    // 1. Gambar Batas Wilayah Stasiun (Poligon Hitam Putus-putus sesuai legenda)
     const boundaryPolygon = L.polygon(station.boundary, {
-      color: 'red',
-      weight: 2,
-      fillColor: '#ef4444',
-      fillOpacity: 0.1,
+      color: '#000',
+      weight: 1.5,
+      fillColor: 'transparent',
+      fillOpacity: 0,
       dashArray: '4, 4'
     }).addTo(mapInstance);
 
@@ -210,8 +210,8 @@ function drawStationsOnMap(mapInstance) {
       L.rectangle(plotBounds, {
         color: '#000',
         weight: 1.5,
-        fillColor: '#22c55e',
-        fillOpacity: 0.6
+        fillColor: '#2e7d32',
+        fillOpacity: 0.8
       }).addTo(mapInstance)
       .bindPopup(`<b>${plot.name} (Stasiun ${station.id})</b><br>Ukuran: ${plot.size}<br>Posisi sampling vegetasi.`);
     });

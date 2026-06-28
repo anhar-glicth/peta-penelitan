@@ -576,7 +576,7 @@ body {
   width: 16px;
   height: 16px;
   background: var(--accent-color);
-  border: 3px solid #fff;
+  border: 2px solid #000;
   border-radius: 50%;
   box-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
   position: relative;
